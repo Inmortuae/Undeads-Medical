@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Items>
+  <!-- Elements ************************************************************************************************ -->
+  <Item name="" identifier="xenocrystal" category="Material" maxstacksize="4" maxstacksizecharacterinventory="4" Tags="smallitem" canbepicked="true" description="" cargocontaineridentifier="metalcrate" scale="0.5" impactsoundtag="impact_metal_light">
+    <PreferredContainer primary="storagecab" />
+    <PreferredContainer secondary="wreckstoragecab,abandonedstoragecab,piratestoragecab" minamount="1" maxamount="2" spawnprobability="0.00001" />
+    <Fabricate suitablefabricators="fabricator" requiredtime="90" requiresrecipe="false">
+      <RequiredSkill identifier="mechanical" level="80" />
+      <RequiredItem identifier="dementonite" amount="1" />
+      <RequiredItem identifier="fulgurium" amount="8" />
+      <RequiredItem identifier="incendium" amount="4" />
+      <RequiredItem identifier="oxygeniteshard" amount="2" />
+      <RequiredItem identifier="physicorium" amount="4" />
+    </Fabricate>
+    <Deconstruct time="20">
+      <Item identifier="fulgurium" amount="2" />
+      <Item identifier="incendium" amount="1" />
+      <Item identifier="physicorium" amount="1" />
+    </Deconstruct>
+    <InventoryIcon texture="%ModDir%/Xml/Item/Materials/Minerals.png" sourcerect="112,0,64,64" origin="0.5,0.5" />
+    <Sprite texture="Minerals.png" sourcerect="112,0,64,64" depth="0.55" origin="0.5,0.5" />
+    <Body radius="40" width="20" density="25" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect">
+      <!-- Remove the item when fully used -->
+      <StatusEffect type="OnBroken" target="This">
+        <Remove />
+      </StatusEffect>
+    </Holdable>
+  </Item>
+  <Item name="" description="" identifier="empty_syringe" category="Medical" maxstacksize="4" cargocontaineridentifier="mediccrate" Tags="smallitem,chem,medical,syringe" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_metal_light" RequireAimToUse="True">
+    <Price baseprice="40" minavailable="1">
+      <Price storeidentifier="merchantresearch" />
+      <Price storeidentifier="merchantmedical" multiplier="0.9" />
+    </Price>
+    <PreferredContainer primary="medcab" secondary="medcontainer" />
+    <PreferredContainer secondary="wreckmedcab,abandonedmedcab" amount="1" spawnprobability="0.002" />
+    <PreferredContainer secondary="outpostmedcab" amount="1" spawnprobability="0.001" />
+    <PreferredContainer secondary="outpostmedcompartment" amount="1" spawnprobability="0.002" />
+    <Fabricate suitablefabricators="medicalfabricator" requiredtime="15">
+      <RequiredSkill identifier="medical" level="35" />
+      <RequiredItem identifier="silicon" amount="2" />
+    </Fabricate>
+    <Deconstruct time="20">
+      <Item identifier="silicon" />
+    </Deconstruct>
+    <InventoryIcon texture="%ModDir%/Xml/Item/Materials/Minerals.png" sourcerect="51,6,64,64" origin="0.5,0.5" />
+    <Sprite texture="%ModDir%/Xml/Item/Materials/Minerals.png" sourcerect="11,-2,40,70" depth="0.6" origin="0.5,0.5" />
+    <Body width="35" height="65" density="10.2" waterdragcoefficient="1" />
+    <Holdable canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" handle1="0,0" msg="ItemMsgPickUpSelect" />
+  </Item>
+</Items>

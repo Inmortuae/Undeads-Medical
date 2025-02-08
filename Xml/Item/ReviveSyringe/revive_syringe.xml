@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Items>
+  <Item name="" description="" identifier="revive_syringe" category="Medical" cargocontaineridentifier="mediccrate" Tags="smallitem,chem,medical,syringe" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_metal_light" RequireAimToUse="True">
+    <PreferredContainer secondary="wreckmedcab,abandonedmedcab" amount="1" spawnprobability="0.002" />
+    <PreferredContainer secondary="outpostmedcab" amount="1" spawnprobability="0.001" />
+    <PreferredContainer secondary="outpostmedcompartment" amount="1" spawnprobability="0.002" />
+    <PreferredContainer primary="medcab" secondary="medcontainer" />
+    <Fabricate suitablefabricators="medicalfabricator" requiredtime="50" requiresrecipe="true">
+      <RequiredSkill identifier="medical" level="80" />
+      <RequiredItem identifier="huskeggs" amount="8" />
+      <RequiredItem identifier="calcium" amount="16" />
+      <RequiredItem identifier="antibleeding3" amount="2" />
+      <RequiredItem identifier="antipsychosis" amount="2" />
+      <RequiredItem identifier="endocrinebooster" amount="3" />
+    </Fabricate>
+    <Deconstruct time="20">
+      <Item identifier="liquidoxygenite" />
+    </Deconstruct>
+    <InventoryIcon texture="%ModDir%/Xml/Item/ReviveSyringe/revive_syringe.png" sourcerect="42,5,64,64" origin="0.5,0.5" />
+    <Sprite texture="%ModDir%/Xml/Item/ReviveSyringe/revive_syringe.png" sourcerect="4,0,37,69" depth="0.6" origin="0.5,0.5" />
+    <Body width="35" height="65" density="10.2" waterdragcoefficient="1" />
+    <MeleeWeapon canBeCombined="true" removeOnCombined="true" slots="Any,RightHand,LeftHand" aimpos="40,5" handle1="0,0" holdangle="220" reload="1.0" msg="ItemMsgPickUpSelect" HitOnlyCharacters="true">
+      <RequiredSkill identifier="medical" level="60" />
+      <StatusEffect type="OnSuccess" target="UseTarget">
+        <Conditional IsDead="true" />
+        <ResetJoints />
+        <LuaHook name="revive_syringe.onUse" />
+      </StatusEffect>
+      <StatusEffect type="OnSuccess" target="UseTarget">
+        <Conditional entitytype="eq Character" />
+        <Conditional IsDead="true" />
+        <Sound file="Content/Items/Medical/Syringe.ogg" range="500" />
+      </StatusEffect>
+      <StatusEffect type="OnImpact" target="UseTarget" multiplyafflictionsbymaxvitality="true" AllowWhenBroken="true">
+        <Affliction identifier="stun" amount="0.1" />
+      </StatusEffect>
+      <StatusEffect type="OnBroken" target="This">
+        <Remove />
+      </StatusEffect>
+    </MeleeWeapon>
+    <Projectile characterusable="false" launchimpulse="18.0" sticktocharacters="false" launchrotation="-90" />
+    <SkillRequirementHint identifier="medical" level="60" />
+  </Item>
+</Items>

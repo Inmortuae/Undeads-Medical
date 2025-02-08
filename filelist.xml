@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<contentpackage name="Undead's Medical" modversion="1.4.8" corepackage="False" steamworkshopid="3275278739" gameversion="1.7.7.0">
+  <Item file="%ModDir%/Xml/Item/ReviveSyringe/revive_syringe.xml" />
+  <Item file="%ModDir%/Xml/Item/RefinedCalyxSyringe/refinedcalyx_syringe.xml" />
+  <Item file="%ModDir%/Xml/Item/SymbiosisSyringe/symbiosis_syringe.xml" />
+  <Item file="%ModDir%/Xml/Item/Materials/materials.xml" />
+  <Item file="%ModDir%/Xml/Item/Nanobots/nanobots.xml" />
+  <Text file="%ModDir%/Translations/English.xml" />
+  <Text file="%ModDir%/Translations/Russian.xml" />
+  <Other file="%ModDir%/Xml/Afflictions/revivedicon.png" />
+  <Other file="%ModDir%/Xml/Afflictions/nanobotsicon.png" />
+  <Talents file="%ModDir%/Xml/Talents/Doctor/TalentsDoctor.xml" />
+  <Other file="%ModDir%/Lua/Autorun/init.lua" />
+  <Other file="%ModDir%/Lua/Scripts/Client/configgui.lua" />
+  <Other file="%ModDir%/Lua/Scripts/Client/MultiLineTextBox.lua" />
+  <Other file="%ModDir%/Lua/Scripts/helperfunctions.lua" />
+    <Other file="%ModDir%/Lua/Scripts/Server/compat.lua" />
+  <Other file="%ModDir%/Lua/Scripts/Server/collect_afflictions_on_death.lua" />
+  <Other file="%ModDir%/Lua/Scripts/Server/revivesyringe.lua" />
+  <Other file="%ModDir%/Lua/Scripts/Server/refinedcalyxsyringe.lua" />
+  <Other file="%ModDir%/Lua/Scripts/Server/nanobots.lua" />
+  <Other file="%ModDir%/Lua/Scripts/configdata.lua" />
+  <Afflictions file="%ModDir%/Xml/Afflictions/afflictions.xml" />
+</contentpackage>

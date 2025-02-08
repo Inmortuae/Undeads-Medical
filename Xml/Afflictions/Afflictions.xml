@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Afflictions>
+  <Affliction name="" identifier="revived" description="" healableinmedicalclinic="false" targets="human,humanhusk" type="resistance" isbuff="true" limbspecific="false" indicatorlimb="Torso" showinhealthscannerthreshold="1" showiconthreshold="50" maxstrength="100">
+    <icon texture="%ModDir%/Xml/Afflictions/revivedicon.png" sheetindex="0,0" sheetelementsize="128,128" origin="0,0" sourcerect="0,0,128,128" />
+  </Affliction>
+  <Affliction name="" identifier="nanobots" description="" healableinmedicalclinic="false" targets="human,humanhusk" type="resistance" isbuff="true" limbspecific="false" indicatorlimb="Torso" showinhealthscannerthreshold="1" showiconthreshold="50" maxstrength="100">
+    <Effect minstrength="0" maxstrength="100" strengthchange="-3.33" resistancefor="stun" minresistance="0" maxresistance="0.45">
+      <StatusEffect target="Character">
+        <StatValue stattype="MeleeAttackMultiplier" minvalue="1.3" maxvalue="1.3" />
+        <!-- Increases melee attack power -->
+        <StatValue stattype="MovementSpeedMultiplier" minvalue="1.2" maxvalue="1.2" />
+        <!-- Increases movement speed (Haste) -->
+      </StatusEffect>
+    </Effect>
+    <icon texture="%ModDir%/Xml/Afflictions/nanobotsicon.png" sheetindex="0,0" sheetelementsize="128,128" origin="0,0" sourcerect="0,0,128,128" />
+  </Affliction>
+</Afflictions>

@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Override>
+  <Talent identifier="miracleworker">
+    <Icon texture="Content/UI/TalentsIcons3.png" sheetindex="7,2" sheetelementsize="128,128" />
+    <Description tag="talentdescription.miracleworker" />
+    <Description tag="talentdescription.miracleworkerreminder" />
+    <Description tag="talentdescription.unlockrecipe">
+      <Replace tag="[itemname]" value="entityname.revive_syringe" color="gui.orange" />
+    </Description>
+    <Description tag="talentdescription.unlockrecipe">
+      <Replace tag="[itemname]" value="entityname.nanobots" color="gui.orange" />
+    </Description>
+    <AbilityGroupInterval interval="0.9">
+      <Abilities>
+        <CharacterAbilityApplyStatusEffectsToAllies maxdistance="600" allowself="false">
+          <StatusEffects>
+            <StatusEffect type="OnAbility" target="Character" disabledeltatime="true">
+              <Affliction identifier="miracleworker" amount="1.0" />
+            </StatusEffect>
+          </StatusEffects>
+        </CharacterAbilityApplyStatusEffectsToAllies>
+      </Abilities>
+    </AbilityGroupInterval>
+    <AbilityGroupEffect abilityeffecttype="None">
+      <Abilities>
+        <CharacterAbilityGiveResistance resistanceid="miracleworker" multiplier="0" />
+      </Abilities>
+    </AbilityGroupEffect>
+    <AddedRecipe itemidentifier="revive_syringe" />
+    <AddedRecipe itemidentifier="nanobots" />
+  </Talent>
+</Override>

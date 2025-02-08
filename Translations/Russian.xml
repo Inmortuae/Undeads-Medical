@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- Localization done by @Heelge / @guns -->
+<infotexts language="Russian" nowhitespace="false" translatedname="Русский">
+  <!-- Afflictions ! -->
+  <afflictionname.revived>Воскрешён</afflictionname.revived>
+  <afflictiondescription.revived>Вас вернули с того света.</afflictiondescription.revived>
+  <afflictionname.nanobots>Наноботы</afflictionname.nanobots>
+  <afflictiondescription.nanobots>Наноботы оживляют вас.</afflictiondescription.nanobots>
+  <!-- /// Items /// !-->
+  <entityname.revive_syringe>Сыворотка воскрешения</entityname.revive_syringe>
+  <entitydescription.revive_syringe>Мощная смесь для предотвращения вечного сна. Действует только на трупах.</entitydescription.revive_syringe>
+  <entityname.nanobots>Наноботы</entityname.nanobots>
+  <entitydescription.nanobots>Шприц наполненный мелкими медицинскими роботами. Они могут вылечивать всех включая ныне воскрешенных людей.</entitydescription.nanobots>
+  <entityname.empty_syringe>Пустой шприц</entityname.empty_syringe>
+  <entitydescription.empty_syringe>Пустой шприц, используемый для крафта.</entitydescription.empty_syringe>
+  <entityname.refinedcalyx_syringe>Очищенный экстракт каликса</entityname.refinedcalyx_syringe>
+  <entitydescription.refinedcalyx_syringe>Более мощный экстракт каликса.</entitydescription.refinedcalyx_syringe>
+  <entityname.symbiosis_syringe>Шприц с симбионтом</entityname.symbiosis_syringe>
+  <entitydescription.symbiosis_syringe>Шприц, содержащий улучшенного симбионта, дающего силу и осознанность, связывая хозяина и паразита в единое целое.</entitydescription.symbiosis_syringe>
+  <!-- /// Materials /// !-->
+  <entityname.xenocrystal>Ксенокристалл</entityname.xenocrystal>
+  <entitydescription.xenocrystal>Инопланетный кристалл сформированный из разных металлов.</entitydescription.xenocrystal>
+</infotexts>

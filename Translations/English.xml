@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- Localization done by @Undead -->
+<infotexts language="English" nowhitespace="false" translatedname="English">
+  <!-- Afflictions ! -->
+  <afflictionname.revived>Revived</afflictionname.revived>
+  <afflictiondescription.revived>You have been brought back from death's door.</afflictiondescription.revived>
+  <afflictionname.nanobots>Nanobots</afflictionname.nanobots>
+  <afflictiondescription.nanobots>Nanobots are reviving you.</afflictiondescription.nanobots>
+  <!-- /// Items /// !-->
+  <entityname.revive_syringe>Revive Serum</entityname.revive_syringe>
+  <entitydescription.revive_syringe>A powerful mix to prevent eternal rest. Effective only on the dead.</entitydescription.revive_syringe>
+  <entityname.nanobots>Nanobots</entityname.nanobots>
+  <entitydescription.nanobots>A syringe full of tiny medical robots. They can heal everyone including previously revived people.</entitydescription.nanobots>
+  <entityname.empty_syringe>Empty Syringe</entityname.empty_syringe>
+  <entitydescription.empty_syringe>A empty syringe used for crafting.</entitydescription.empty_syringe>
+  <entityname.refinedcalyx_syringe>Refined Calyx Extract</entityname.refinedcalyx_syringe>
+  <entitydescription.refinedcalyx_syringe>A more potent calyx extract.</entitydescription.refinedcalyx_syringe>
+  <entityname.symbiosis_syringe>Symbiosis Syringe</entityname.symbiosis_syringe>
+  <entitydescription.symbiosis_syringe>A syringe containing a refined symbiote, granting strength and awareness while binding host and parasite as one.</entitydescription.symbiosis_syringe>
+  <!-- /// Materials /// !-->
+  <entityname.xenocrystal>Xenocrystal</entityname.xenocrystal>
+  <entitydescription.xenocrystal>A alien crystal formed from various metals.</entitydescription.xenocrystal>
+</infotexts>
