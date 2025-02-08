@@ -74,15 +74,16 @@ Welcome to Undead's Medical, a mod for Barotrauma that enhances the medical mech
 - **Revive Affliction** (`RS_Affliction`): Restricts Revive Serum to characters without the affliction. Default: `true`
 - **No Revive** (`NOREV`): Prevents revival in severe injury cases. Default: `true`
 
-To install the mod, visit the [Steam Workshop page](https://steamcommunity.com/sharedfiles/filedetails/?id=3275278739) and subscribe to the mod.
-
-## How to Configure
-
 You can configure in game.
 
-Enjoy the enhanced medical gameplay with Undead's Medical!
+To install the mod, visit the [Steam Workshop page](https://steamcommunity.com/sharedfiles/filedetails/?id=3275278739) and subscribe to the mod.
 
+## Contributors
+- **Heelge**: Russian translation and config assistance.
+- **Dr_Bruhman**: Original concept for Revive Serum.
+- **Captain_Fight**: Expanded on their concept of Transferable Symbiosis.
 
+## License
 MIT License
 
 Copyright (c) 2024 Undead's Medical Team
