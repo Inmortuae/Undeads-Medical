@@ -324,7 +324,7 @@ function SaveInv(character)
             for containedItem in item.OwnInventory.AllItems do
                 local containedData = SaveItem(containedItem, item.Prefab.Identifier, nil)
                 table.insert(itemData.contained_items, containedData)
-                --print("Saved contained item: " .. tostring(containedItem.Prefab.Identifier) .. " in " .. tostring(item.Prefab.Identifier))
+                print("Saved contained item: " .. tostring(containedItem.Prefab.Identifier) .. " in " .. tostring(item.Prefab.Identifier))
             end
         end
 
