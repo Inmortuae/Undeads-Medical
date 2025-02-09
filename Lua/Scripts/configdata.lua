@@ -99,13 +99,13 @@ RS.ConfigData = {
         name = "Vanilla Damage Patch",
         default = true,
         type = "bool",
-        description = "Enables standard afflictions without requiring Neurotrauma. Do not use alongside Neurotrauma Patch",
+        description = "Enables standard afflictions without requiring Neurotrauma. If enabled With Neurotrauma, vanilla afflictions will be disabled.",
     },
     NTRS = {
         name = "Neurotrauma Patch",
         default = false,
         type = "bool",
-        description = "Enables standard afflictions and afflictions from Neurotrauma. Do not use alongside Vanilla Damage",
+        description = "Enables standard afflictions and afflictions from Neurotrauma. Includes vanilla afflictions unless vanilla damage patch is enabled.",
     },
     NTCRS = {
         name = "Cybernetics Enhanced Patch",
@@ -113,11 +113,17 @@ RS.ConfigData = {
         type = "bool",
         description = "Allows the saving of Cyberlimbs and Cyberorgans.",
     },
+    NTERS = {
+        name = "Neurotrauma Eyes Patch",
+        default = false,
+        type = "bool",
+        description = "Allows the saving of Positive Neurotrauma Eye afflictions. I.e. Implanted Eyes.",
+    },
     NTLRS = {
         name = "Neurotrauma Removed Limb Patch",
         default = false,
         type = "bool",
-        description = "Allows the saving of removed limbs.",
+        description = "Allows the saving of removed limbs. If Neurotrauma Eyes Patch is enabled, Neurotrauma Eye negative afflictions will be saved.",
     },
     FD = {
         name = "Instant Revive Patch",

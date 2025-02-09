@@ -1,12 +1,13 @@
 local NTIn = NTCompat.isNTactive()
 local NTCIn = NTCompat.isNTCactive()
+local NTEIn = NTCompat.isNTEactive()
 
 -- Function to collect all afflictions from a character upon death
 function CollectAfflictionsOnDeath(character)
     if not character or not character.CharacterHealth then
         return {}
     end
-
+    
     local afflictions = {}
 
     -- Define valid limb mappings for limb-specific afflictions
@@ -18,9 +19,9 @@ function CollectAfflictionsOnDeath(character)
         "aplus", "oplus", "bplus"
     }
 
+    -- NT afflictions
     if NTIn and RSConfig.Get("NTLRS", true) then
         local ntGAfflictions = {
-            --NT
             "tra_amputation",
             "tla_amputation",
             "trl_amputation",
@@ -33,8 +34,38 @@ function CollectAfflictionsOnDeath(character)
         for _, affliction in ipairs(ntGAfflictions) do
             table.insert(globalAfflictions, affliction)
         end
+        
+        if NTEIn and RSConfig.Get("NTERS", true) then
+            local nteLAfflictions = {
+                noeye = {LimbType.Head},
+                eyesdead = {LimbType.Head},
+                eyeone = {LimbType.Head},
+                lefteyegone = {LimbType.Head},
+                righteyegone = {LimbType.Head},
+                eyelowbloodpressure = {LimbType.Head},
+                eyedamage = {LimbType.Head},
+                eyeshock = {LimbType.Head},
+                eyedrop = {LimbType.Head},
+                deusizinedrop = {LimbType.Head},
+                eyesickness = {LimbType.Head},
+                eyecataract = {LimbType.Head},
+                eyemuscle = {LimbType.Head},
+                eyegell = {LimbType.Head},
+                eyenerve = {LimbType.Head},
+                eyelid = {LimbType.Head},
+                eyepopped = {LimbType.Head},
+                corneaincision = {LimbType.Head},
+                emulsification = {LimbType.Head},
+                lasereyesurgery = {LimbType.Head},
+                hasglasses = {LimbType.Head}
+            }
+            for affliction, limbs in pairs(nteLAfflictions) do
+                limbMapping[affliction] = limbs  -- Directly insert key-value pairs
+            end
+        end
     end
 
+    -- NTC afflictions
     if NTCIn and RSConfig.Get("NTCRS", true) then
         local ntcGAfflictions = {
             "ntc_cyberpsychosis",
@@ -42,7 +73,6 @@ function CollectAfflictionsOnDeath(character)
             "ntc_cyberlung_pressure_recovery"
         }
         local ntcLAfflictions = {
-            --NTC
             ntc_cyberarm = {LimbType.LeftArm, LimbType.RightArm},
             ntc_cyberleg = {LimbType.LeftLeg, LimbType.RightLeg},
             ntc_cyberlimb = {LimbType.LeftArm, LimbType.RightArm, LimbType.LeftLeg, LimbType.RightLeg},
@@ -63,6 +93,25 @@ function CollectAfflictionsOnDeath(character)
             table.insert(globalAfflictions, affliction)
         end
         for affliction, limbs in pairs(ntcLAfflictions) do
+            limbMapping[affliction] = limbs  -- Directly insert key-value pairs
+        end
+    end
+
+    -- NTE afflictions
+    if NTEIn and RSConfig.Get("NTERS", true) then
+        local nteLAfflictions = {
+            eyebionic = {LimbType.Head},
+            medicallens = {LimbType.Head},
+            electricallens = {LimbType.Head},
+            zoomlens = {LimbType.Head},
+            eyenight = {LimbType.Head},
+            eyeinfarared = {LimbType.Head},
+            eyeplastic = {LimbType.Head},
+            eyemonster = {LimbType.Head},
+            eyehusk = {LimbType.Head},
+            eyeterror = {LimbType.Head}
+        }
+        for affliction, limbs in pairs(nteLAfflictions) do
             limbMapping[affliction] = limbs  -- Directly insert key-value pairs
         end
     end
@@ -104,6 +153,7 @@ Hook.Add("character.death", "OnCharacterDeath", function(character)
 
     local afflictions = CollectAfflictionsOnDeath(character)
     table.insert(tempAfflictionStorage, { characterName = character.Name, afflictions = afflictions })
+    print(NTIn, NTCIn, NTEIn)
 end)
 
 -- Function to apply saved afflictions to a target character
@@ -124,7 +174,7 @@ function ApplySavedAfflictions(targetCharacter)
                 local limbType = affliction.limbType
 
                 -- **Skip NT afflictions if the character has "nanobots"**
-                if hasNanobots and (
+                if hasNanobots and NTIn and (
                     identifier == "tra_amputation" or
                     identifier == "tla_amputation" or
                     identifier == "trl_amputation" or
@@ -136,6 +186,31 @@ function ApplySavedAfflictions(targetCharacter)
                 ) then
                     -- Skip applying NT amputation afflictions
                     print("Skipping " .. identifier .. " because the character has nanobots.")
+                elseif hasNanobots and NTEIn and (
+                    identifier == "noeye" or
+                    identifier == "eyesdead" or
+                    identifier == "eyeone" or
+                    identifier == "lefteyegone" or
+                    identifier == "righteyegone" or
+                    identifier == "eyelowbloodpressure" or
+                    identifier == "eyedamage" or
+                    identifier == "eyeshock" or
+                    identifier == "eyedrop" or
+                    identifier == "deusizinedrop" or
+                    identifier == "eyesickness" or
+                    identifier == "eyecataract" or
+                    identifier == "eyemuscle" or
+                    identifier == "eyegell" or
+                    identifier == "eyenerve" or
+                    identifier == "eyelid" or
+                    identifier == "eyepopped" or
+                    identifier == "corneaincision" or
+                    identifier == "emulsification" or
+                    identifier == "lasereyesurgery" or
+                    identifier == "hasglasses"
+                ) then
+                    -- Skip applying NTE amputation afflictions
+                    print("Skipping " .. identifier .. " because the character has nanobots.")                        
                 else
                     -- Apply the affliction normally
                     if limbType then
@@ -388,12 +463,15 @@ end
 
 function ApplyRevivedAfflictions(user, character, target)
     local hasNanobots = HF.HasAffliction(character, "nanobots", 1)
+    local VanillaDMG = RSConfig.Get("RS_VanillaDMG", true)
+    local NTRS = RSConfig.Get("NTRS", true)
+
     -- Apply (revived) afflictions
     if hasNanobots then
         HF.SetAffliction(target, "nanobots", 100)
     else
         -- Check if config for RS_VanillaDMG is true if so then it applies Vanilla Afflictions
-        if RSConfig.Get("RS_VanillaDMG", true) or RSConfig.Get("NTRS", true) then
+        if (VanillaDMG and not NTRS) or (NTRS and not VanillaDMG) then
             if user.GetSkillLevel("medical") >= 60 then
                 HF.SetAffliction(target, "bloodloss", math.random(40, 60))
                 HF.SetAffliction(target, "organdamage", math.random(40, 60))
@@ -408,7 +486,7 @@ function ApplyRevivedAfflictions(user, character, target)
         end
 
         -- Check if NT is installed and that config for NT Patch is true then applies corresponding damage group
-        if NTIn and RSConfig.Get("NTRS", true) then
+        if NTIn and NTRS then
             if user.GetSkillLevel("medical") >= 60 then
                 HF.SetAffliction(target, "sym_confusion", 100)
                 HF.SetAffliction(target, "sym_unconsciousness", 100)
