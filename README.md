@@ -66,13 +66,14 @@ Welcome to Undead's Medical, a mod for Barotrauma that enhances the medical mech
 - **Warning**: If the player does not have symbiosis, they will receive a large dose of husk infection.
 
 ## Configuration Options
-- **Vanilla Damage Patch** (`RS_VanillaDMG`): Enables standard afflictions without Neurotrauma. Default: `true`
-- **Neurotrauma Patch** (`NTRS`): Enables standard and Neurotrauma afflictions. Default: `false`
-- **Cybernetics Enhanced Patch** (`NTCRS`): Allows saving Cyberlimbs and Cyberorgans. Default: `false`
-- **Neurotrauma Removed Limb Patch** (`NTLRS`): Allows saving removed limbs. Default: `false`
-- **Instant Revive Patch** (`FD`): Removes injuries upon revival with Revive Serum. Default: `false`
-- **Revive Affliction** (`RS_Affliction`): Restricts Revive Serum to characters without the affliction. Default: `true`
-- **No Revive** (`NOREV`): Prevents revival in severe injury cases. Default: `true`
+- **Vanilla Damage Patch** (`RS_VanillaDMG`): Enables standard afflictions without requiring Neurotrauma. If enabled with Neurotrauma, vanilla afflictions will be disabled. Default: `true`
+- **Neurotrauma Patch** (`NTRS`): Enables standard afflictions and afflictions from Neurotrauma. Includes vanilla afflictions unless Vanilla Damage Patch is enabled. Default: `false`
+- **Cybernetics Enhanced Patch** (`NTCRS`): Allows the saving of Cyberlimbs and Cyberorgans. Default: `false`
+- **Neurotrauma Eyes Patch** (`NTERS`): Allows the saving of Positive Neurotrauma Eye afflictions (e.g., Implanted Eyes). Default: `false`
+- **Neurotrauma Removed Limb Patch** (`NTLRS`): Allows the saving of removed limbs. If Neurotrauma Eyes Patch is enabled, Neurotrauma Eye negative afflictions will be saved. Default: `false`
+- **Instant Revive Patch** (`FD`): Removes injuries upon revival when using the Revive Serum. Do not use alongside Neurotrauma Patch or Vanilla Damage. Default: `false`
+- **Revive Affliction** (`RS_Affliction`): Applies a custom affliction that makes the Revive Serum only work on characters without the affliction, restricting revival for affected individuals. Does not affect Nanobots. Default: `true`
+- **No Revive** (`NOREV`): Prevents revival in cases of severe injuries such as extreme blood loss, gunshot wounds above a fatal threshold, pressure injuries, or missing vital limbs (e.g., head). Default: `true`
 
 You can configure in game.
 
