@@ -18,7 +18,7 @@ function AddToCrewManager(character)
 
         savedInventories = savedInventories or {}
         -- Save inventory at round end
-        Hook.Patch("LoadInventory " .. character.Name, "Barotrauma.GameSession", "EndRound",function()
+        Hook.Patch("SaveInventory " .. character.Name, "Barotrauma.GameSession", "EndRound",function()
             if not SERVER then return end
 
             if character ~= nil then
@@ -41,7 +41,7 @@ function AddToCrewManager(character)
                 if character ~= nil then
                     -- Find the new character with the same name
                     local newCharacter = nil
-                    local invData = savedInventories and savedInventories[character.Name]
+                    local invData = savedInventories[character.Name]
                     for _, char in ipairs(Character.CharacterList) do
                         if char.Name == character.Name then
                             newCharacter = char
@@ -103,7 +103,7 @@ function regen(character, position, user)
     -- Create new human character
     local info = character.Info
     local oldSeed = character.Seed -- Extract the old character's seed
-    local newHuman = Character.Create("Human", position, oldSeed, info, 0, true, true)
+    local newHuman = Character.Create("Human", position, oldSeed, info, 0, true, true, true, nil, false, false)
     newHuman.TeamID = character.TeamID
     newHuman.Revive(false, true)
     newHuman.Enabled = true

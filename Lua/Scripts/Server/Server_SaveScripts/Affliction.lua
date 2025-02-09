@@ -153,7 +153,6 @@ Hook.Add("character.death", "OnCharacterDeath", function(character)
 
     local afflictions = CollectAfflictionsOnDeath(character)
     table.insert(tempAfflictionStorage, { characterName = character.Name, afflictions = afflictions })
-    print(NTIn, NTCIn, NTEIn)
 end)
 
 -- Function to apply saved afflictions to a target character
