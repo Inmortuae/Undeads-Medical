@@ -27,7 +27,10 @@ if (Game.IsMultiplayer and SERVER) or not Game.IsMultiplayer then
     end,1) end,1)
 
 	dofile(RS.Path.."/Lua/Scripts/Server/compat.lua")
-	dofile(RS.Path.."/Lua/Scripts/Server/collect_afflictions_on_death.lua")
+	dofile(RS.Path.."/Lua/Scripts/Server/Server_SaveScripts/Talents.lua")
+	dofile(RS.Path.."/Lua/Scripts/Server/Server_SaveScripts/Inv.Lua")
+	dofile(RS.Path.."/Lua/Scripts/Server/Server_SaveScripts/Affliction.lua")
+	dofile(RS.Path.."/Lua/Scripts/Server/Regen.lua")
     dofile(RS.Path.."/Lua/Scripts/Server/revivesyringe.lua")
     dofile(RS.Path.."/Lua/Scripts/Server/nanobots.lua")
 	dofile(RS.Path.."/Lua/Scripts/Server/refinedcalyxsyringe.lua")

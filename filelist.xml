@@ -14,8 +14,11 @@
   <Other file="%ModDir%/Lua/Scripts/Client/configgui.lua" />
   <Other file="%ModDir%/Lua/Scripts/Client/MultiLineTextBox.lua" />
   <Other file="%ModDir%/Lua/Scripts/helperfunctions.lua" />
-    <Other file="%ModDir%/Lua/Scripts/Server/compat.lua" />
-  <Other file="%ModDir%/Lua/Scripts/Server/collect_afflictions_on_death.lua" />
+  <Other file="%ModDir%/Lua/Scripts/Server/compat.lua" />
+  <Other file="%ModDir%/Lua/Scripts/Server/Server_SaveScripts/Talents.lua" />
+  <Other file="%ModDir%/Lua/Scripts/Server/Server_SaveScripts/Inv.lua" />
+  <Other file="%ModDir%/Lua/Scripts/Server/Server_SaveScripts/Affliction.lua" />
+  <Other file="%ModDir%/Lua/Scripts/Server/Regen.lua" />
   <Other file="%ModDir%/Lua/Scripts/Server/revivesyringe.lua" />
   <Other file="%ModDir%/Lua/Scripts/Server/refinedcalyxsyringe.lua" />
   <Other file="%ModDir%/Lua/Scripts/Server/nanobots.lua" />
