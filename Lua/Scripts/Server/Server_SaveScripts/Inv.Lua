@@ -1,88 +1,53 @@
-function SaveInv(character)
-    if not character or not character.Inventory then 
-        print("No character or inventory found.")
-        return nil 
-    end
+function TransferInventory(character, target)
+    -- Transfer inventory items while preserving genetic material locations
+    if character.Inventory ~= nil and target.Inventory ~= nil then
+        local geneticMaterials = {} -- Stores genetic material data (item + location)
 
-    local inventoryData = { items = {} }
-
-    -- Recursive function to save item data, including contained items
-    local function SaveItem(item, parentContainerPrefab, parentSlot)
-        if not item then return end
-
-        local itemData = {
-            prefab = item.Prefab.Identifier,  -- Use the item's prefab identifier
-            condition = item.Condition or 100,
-            slot = parentSlot or nil,  -- Store the slot index if available
-            container = parentContainerPrefab,  -- Store the prefab identifier of the parent container
-            contained_items = {} -- Store nested items
-        }
-
-        -- If the item has an inventory (is a container), save its contents
-        if item.OwnInventory then
-            for containedItem in item.OwnInventory.AllItems do
-                local containedData = SaveItem(containedItem, item.Prefab.Identifier, nil)
-                table.insert(itemData.contained_items, containedData)
-                print("Saved contained item: " .. tostring(containedItem.Prefab.Identifier) .. " in " .. tostring(item.Prefab.Identifier))
-            end
-        end
-
-        return itemData
-    end
-
-    -- Save all items in the character's inventory
-    for i = 0, character.Inventory.Capacity - 1 do
-        local itemList = character.Inventory.GetItemsAt(i)
-        if itemList then
-            for _, item in ipairs(itemList) do
-                table.insert(inventoryData.items, SaveItem(item, nil, i))
-            end
-        end
-    end
-
-    return inventoryData
-end
-
-function LoadInventory(target, inventoryData)
-    if not target or not target.Inventory or not inventoryData then return end
-
-    -- First pass: Spawn all top-level items
-    for _, data in ipairs(inventoryData.items) do
-        local params = { condition = data.condition or 100 }
-
-        HF.SpawnItemPlusFunction(data.prefab, nil, params, target.Inventory, data.slot, target.WorldPosition)
-        print("Spawned item: " .. tostring(data.prefab))
-    end
-
-    local function GetItem(player, itemIdentifier)
-        if not player or player.Inventory == nil then return nil end
-        for item in player.Inventory.AllItems do
-            if item.Prefab.Identifier == itemIdentifier then
-                return item -- Return the item itself
-            end
-        end
-        return nil -- Return nil if not found
-    end
-
-    Timer.Wait(function()
-        -- Second pass: Load contained items into their respective containers
-        for _, data in ipairs(inventoryData.items) do
-            if data.prefab and data.contained_items then
-
-                for _, containedItemData in ipairs(data.contained_items) do
-                    local params = { condition = containedItemData.condition or 100 }
-                    local containerItem = nil
-                    local containedItem = nil
-                    if containedItemData.container ~= nil then
-                        containerItem = GetItem(target, containedItemData.container)
-                        containedItem = containedItemData.prefab
+        -- First pass: Identify genetic materials and store their locations
+        for i = 0, math.min(character.Inventory.Capacity - 1, target.Inventory.Capacity - 1) do
+            local list = character.Inventory.GetItemsAt(i)
+            if list then
+                for _, item in ipairs(list) do
+                    if item ~= nil and item.Prefab.Identifier == "geneticmaterial" then
+                        -- Store the genetic material's original container and slot
+                        geneticMaterials[#geneticMaterials + 1] = {
+                            item = item,
+                            slot = i, -- Original inventory slot
+                            container = item.ParentInventory -- Could be a Gene Splicer or another item
+                        }
                     end
-
-                    HF.PutItemInsideItem(containerItem, containedItem, 1)
-                    print("Contained item spawned: " .. tostring(containedItemData.prefab) .. " inside " .. tostring(data.prefab))
-
                 end
             end
         end
-    end, 50) -- Delay ensures the container is present
+
+        -- Second pass: Transfer all items (except genetic material)
+        for i = 0, math.min(character.Inventory.Capacity - 1, target.Inventory.Capacity - 1) do
+            local list = character.Inventory.GetItemsAt(i)
+            if list then
+                for _, item in ipairs(list) do
+                    if item ~= nil and target and item.Prefab.Identifier ~= "geneticmaterial" then
+                        item.Drop()
+                        Timer.Wait(function()
+                            target.Inventory.TryPutItem(item, i, true, true, nil)
+                        end, 35)
+                    end
+                end
+            end
+        end
+
+        -- Third pass: Re-add genetic material to its original location
+        Timer.Wait(function()
+            for _, data in ipairs(geneticMaterials) do
+                if data.item ~= nil then
+                    if data.container ~= nil and data.container.ParentInventory == target.Inventory then
+                        -- Place the genetic material back in the exact same container (e.g., Gene Splicer)
+                        data.container.TryPutItem(data.item, data.slot, true, true, nil)
+                    else
+                        -- Otherwise, place it back into the new human's inventory in the same slot
+                        target.Inventory.TryPutItem(data.item, data.slot, true, true, nil)
+                    end
+                end
+            end
+        end, 50) -- Slight delay to ensure it happens after main transfer
+    end
 end
