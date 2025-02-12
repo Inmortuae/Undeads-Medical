@@ -51,6 +51,7 @@ function LoadInventory(target, inventoryData)
         local params = { condition = data.condition or 100 }
 
         HF.SpawnItemPlusFunction(data.prefab, nil, params, target.Inventory, data.slot, target.WorldPosition)
+        print("Spawned item: " .. tostring(data.prefab))
     end
 
     local function GetItem(player, itemIdentifier)
@@ -78,6 +79,7 @@ function LoadInventory(target, inventoryData)
                     end
 
                     HF.PutItemInsideItem(containerItem, containedItem, 1)
+                    print("Contained item spawned: " .. tostring(containedItemData.prefab) .. " inside " .. tostring(data.prefab))
 
                 end
             end
