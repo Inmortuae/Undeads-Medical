@@ -1,3 +1,16 @@
+local savedCharacterData = {}
+
+Hook.Add("character.death", "SaveCharacterDataOnDeath", function(character)
+    if character == nil or character.IsHuman == false then return end
+
+    savedCharacterData[character.Name] = {
+        info = character.Info,
+        seed = character.Seed,
+        teamID = character.TeamID
+    }
+
+end)
+
 -- Function to regen a character
 function regen(character, position, user)
     local client = HF.CharacterToClient(character)
@@ -7,35 +20,26 @@ function regen(character, position, user)
         client = HF.ClientFromName(character)
     end
 
-    -- Check if the character is already in the remove queue
-    if Entity.Spawner.IsInRemoveQueue(character) then
-        return false
-    end
-
-    -- Properly disable character before replacement
-    character.Enabled = false
-
     -- Save talents
     local savedTalents = SaveTalents(character)
 
+    -- Retrieve saved character data
+    local charData = savedCharacterData[character.Name]
+    local oldinfo = charData.info 
+    local oldSeed = charData.seed
+    local oldTeamID = charData.teamID
+
+    -- Remove the old character
+    Entity.Spawner.AddEntityToRemoveQueue(character)
 
     -- Create new human character
-    local info = character.Info
-    local oldSeed = character.Seed -- Extract the old character's seed
-    local newHuman = Character.Create("Human", position, oldSeed, info, 0, true, true, true, nil, false, false)
-    newHuman.TeamID = character.TeamID
-    newHuman.Revive(false, true)
+    local newHuman = Character.Create("Human", position, oldSeed, oldinfo, 0, false, true, true, nil, false, false)
 
-    newHuman.Enabled = true
-
+    newHuman.TeamID = oldTeamID
+    
     TransferInventory(character, newHuman)
 
-    -- Remove character safely
-    if SERVER then
-        Timer.Wait(function()
-            Entity.Spawner.AddEntityToRemoveQueue(character)
-        end, 100) -- Delay ensures it does not conflict with new character creation
-    end
+    newHuman.Revive(false, true)
 
     -- Reapply talents
     LoadTalents(newHuman, savedTalents)
@@ -48,9 +52,9 @@ function regen(character, position, user)
     
     -- Set client character
     if SERVER then
-        if client == nil and newHuman ~= nil then
+        if client == nil and not newHuman.IsBot then
             -- Try to find the client using the target's name
-            for key, potentialClient in pairs(Client.ClientList) do
+            for _, potentialClient in pairs(Client.ClientList) do
                 if potentialClient.Name == newHuman.Name then
                     client = potentialClient
                     break
