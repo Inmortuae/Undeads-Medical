@@ -105,7 +105,7 @@ function CollectAfflictionsOnDeath(character)
             electricallens = {LimbType.Head},
             zoomlens = {LimbType.Head},
             eyenight = {LimbType.Head},
-            eyeinfarared = {LimbType.Head},
+            eyeinfrared = {LimbType.Head},
             eyeplastic = {LimbType.Head},
             eyemonster = {LimbType.Head},
             eyehusk = {LimbType.Head},
