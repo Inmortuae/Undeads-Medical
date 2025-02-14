@@ -1,8 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Item name="" description="" identifier="refinedcalyx_syringe" category="Medical" maxstacksize="4" cargocontaineridentifier="mediccrate" Tags="smallitem,chem,medical,syringe" useinhealthinterface="true" scale="0.5" impactsoundtag="impact_metal_light" RequireAimToUse="True">
-  <Price baseprice="40" minavailable="1">
-    <Price storeidentifier="merchantresearch" />
-    <Price storeidentifier="merchantmedical" multiplier="0.9" />
+  <Price baseprice="4000" minleveldifficulty="35">
+    <Price storeidentifier="merchanthusk" minavailable="0" maxavailable="2"/>
   </Price>
   <PreferredContainer primary="medcab" secondary="medcontainer" />
   <PreferredContainer secondary="wreckmedcab,abandonedmedcab" amount="1" spawnprobability="0.002" />
