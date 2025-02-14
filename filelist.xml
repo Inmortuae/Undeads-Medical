@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<contentpackage name="Undead's Medical" modversion="1.4.9" corepackage="False" steamworkshopid="3275278739" gameversion="1.7.7.0">
+<contentpackage name="Undead's Medical" modversion="1.5.0" corepackage="False" steamworkshopid="3275278739" gameversion="1.7.7.0">
   <Item file="%ModDir%/Xml/Item/ReviveSyringe/revive_syringe.xml" />
   <Item file="%ModDir%/Xml/Item/RefinedCalyxSyringe/refinedcalyx_syringe.xml" />
   <Item file="%ModDir%/Xml/Item/SymbiosisSyringe/symbiosis_syringe.xml" />
