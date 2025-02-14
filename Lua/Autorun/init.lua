@@ -2,7 +2,7 @@
  
 RS = {} -- Undead's Medical
 RS.Name="Undead's Medical"
-RS.Version = "1.4.8"
+RS.Version = "1.4.9"
 RS.VersionNum = 01090301
 RS.Path = table.pack(...)[1]
 
